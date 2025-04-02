@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f8f9fa; /* Optional: Light background */
+    background-color: #FDFFF5; /* Light background */
     color: #333;
 }
 
@@ -14,16 +14,17 @@ main {
     flex-grow: 1; /* Allows main content to fill space for sticky footer */
 }
 
+/* Header and Navigation */
 header {
     position: sticky;
     top: 0;
     z-index: 1030; /* Bootstrap's standard sticky z-index */
 }
 
-/* header .navbar { */
+header .navbar {
     /* Use Bootstrap padding/shadow utilities in HTML */
-    /* Example: py-2 px-md-4 shadow-sm */
-/* } */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 header .nav-link {
     color: black !important; /* Override Bootstrap if needed */

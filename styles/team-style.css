@@ -8,59 +8,34 @@
 body {
     font-family: "Roboto", sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #fff; /* Default background */
+    color: #333; /* Darker text for readability */
+    background-color: #FDFFF5; /* Light background */
 }
 
 /* Header and Navigation */
 header {
     position: sticky;
     top: 0;
-    background-color: white;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between; /* Pushes logo left, nav/toggle right */
-    align-items: center;
-    padding: 15px 5%; /* Use percentage for padding */
-    border-bottom: 1px solid #ccc;
+    z-index: 1030; /* Bootstrap's standard sticky z-index */
 }
 
-.logo-container img {
-    display: block; /* Prevents extra space below image */
-    /* width: 150px; /* Width set in HTML */
-    height: auto; /* Maintain aspect ratio */
+header .navbar {
+    /* Use Bootstrap padding/shadow utilities in HTML */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-nav {
-    display: flex; /* Nav items in a row on desktop */
-    align-items: center;
-}
-
-nav a {
-    margin: 0 15px; /* Spacing between links */
-    text-decoration: none;
-    color: black;
-    font-weight: 400;
-    font-size: 16px; /* Slightly smaller */
-    letter-spacing: 1px; /* Less spacing */
+header .nav-link {
+    color: black !important; /* Override Bootstrap if needed */
+    font-weight: bold;
+    font-size: 1rem; /* Standard font size */
     transition: color 0.3s ease;
+    padding: 0.5rem 0.75rem !important; /* Consistent padding */
+    margin-left: 10px; /* Reduced margin */
 }
 
-nav a:hover {
-    color: #365a97;
-}
-
-.menu-toggle {
-    display: none; /* Hidden on desktop */
-    cursor: pointer;
-}
-
-.menu-toggle button {
-    background: none;
-    border: none;
-    font-size: 1.5rem; /* Adjust size as needed */
-    color: #333;
-    padding: 5px;
+header .nav-link:hover {
+    color: #365a97 !important;
+    text-decoration: none; /* Remove underline, let hover effect be color change */
 }
 
 /* Main Content Area */
@@ -191,110 +166,80 @@ nav a:hover {
 
 /* Footer Styling */
 .footer {
-    background: #170c02;
-    color: #FFFDFD;
-    padding: 40px 5%;
-    text-align: center;
-    margin-top: 50px; /* Space above footer */
+    background-color: #111; /* Darker background */
+    color: #f8f9fa; /* Lighter text */
+    padding-top: 2.5rem; /* Use padding utilities in HTML or define here */
+    padding-bottom: 1.5rem;
 }
 
-.container { /* Renamed from .container for clarity if needed elsewhere */
-    max-width: 1100px;
-    margin: 0 auto;
+.footer h1 {
+    font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+    font-weight: 400; /* Adjusted weight */
+    margin-bottom: 1rem;
 }
 
-.footer-section h1 {
-    font-weight: 300; /* Lighter */
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    margin-bottom: 15px;
-    /* Removed fixed width/height */
-}
-
-.footer-section p { /* EMAIL Label */
-    font-size: clamp(1rem, 2.5vw, 1.1rem);
-    color: #ffffff;
+.footer .email-container p {
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
     font-weight: 300;
-    margin-bottom: 5px;
+    color: #ccc; /* Slightly muted color */
 }
-.footer-section p a { /* Email Link */
-    color: #eee; /* Slightly different color for link */
-    text-decoration: none;
-    transition: color 0.3s ease;
+
+.footer .email-container a {
+    font-size: 1rem;
     font-weight: 400;
+    color: #fff; /* White link */
+    text-decoration: none;
 }
-.footer-section p a:hover {
-    color: #fff;
-}
-
-.line {
-    height: 1px; /* Thinner line */
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent */
-    width: 80%; /* Relative width */
-    max-width: 400px; /* Max width */
-    margin: 15px auto; /* Center line */
+.footer .email-container a:hover {
+    text-decoration: underline;
 }
 
-.social-icons {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    gap: 25px; /* Space between icons */
+.footer hr.footer-line {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    margin: 1.5rem 0; /* Consistent spacing */
+    width: 60%; /* Line width relative */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .social-icons a {
-    font-size: clamp(1.5rem, 4vw, 1.8rem);
-    color: white;
+    font-size: 1.5rem; /* Consistent icon size */
+    color: #ccc; /* Muted icon color */
     transition: color 0.3s ease, transform 0.3s ease;
+    margin: 0 8px; /* Space around icons */
 }
 
 .social-icons a:hover {
-    color: #ababae;
-    transform: scale(1.1); /* Slight scale on hover */
+    color: #fff; /* Brighter on hover */
+    transform: scale(1.1);
 }
 
-.footer-bottom {
-    margin-top: 20px;
-    font-size: clamp(0.8rem, 2vw, 0.9rem);
-    color: #aaa;
+.footer-bottom p {
+    color: #aaa; /* Muted copyright text */
+    margin: 0;
+    font-size: 0.85rem; /* Slightly smaller */
 }
 
+
+/* --- Responsive Adjustments --- */
+
+/* Adjust navbar link spacing on smaller screens */
+@media (max-width: 991.98px) {
+    header .navbar-nav .nav-link {
+        margin-left: 0;
+        padding-left: 1rem !important; /* Add padding for alignment in collapsed menu */
+        padding-right: 1rem !important;
+    }
+    header .navbar-collapse {
+        margin-top: 10px; /* Space above collapsed menu */
+    }
+}
 
 /* --- Mobile Styles --- */
 @media (max-width: 768px) {
-    header {
-        padding: 15px 5%;
-        position: relative; /* Needed for absolute positioning of nav */
-    }
-
-    nav {
-        display: none; /* Hide nav by default */
-        flex-direction: column;
-        position: absolute;
-        top: 100%; /* Position below header */
-        left: 0;
-        width: 100%;
-        background: white;
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
-        padding: 10px 0; /* Padding inside mobile nav */
-        z-index: 999; /* Ensure it's above content */
-    }
-
-    nav.active {
-        display: flex; /* Show nav when active */
-    }
-
-    nav a {
-        margin: 10px 0; /* Vertical spacing for mobile links */
-        padding: 10px 20px;
-        text-align: center;
-        width: 100%;
-    }
-
-    .menu-toggle {
-        display: block; /* Show hamburger */
-    }
-
     /* Main content padding adjusted slightly if needed */
      .about-us-content {
         padding: 30px 5%;
@@ -320,11 +265,14 @@ nav a:hover {
     }
 
     /* Adjust footer spacing/sizes */
-    .footer {
-        padding: 30px 5%;
+    .footer h1 {
+        font-size: 1.2rem;
     }
-    .social-icons {
-        gap: 20px;
+     .social-icons a {
+        font-size: 1.3rem;
+    }
+     .footer hr.footer-line {
+         width: 80%;
     }
 
 }
