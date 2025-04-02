@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jazbaa - Past Events</title>
+    <link rel="icon" type="image/png" href="assets/Jazbaa final logo-5.png"> <!-- Make sure this path is correct -->
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    /* General Page Styles */
+    /* :root {} */ /* Define CSS variables if needed */
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    html {
+      font-size: 62.5%; /* 1rem = 10px */
+    }
+    body {
+        font-size: 1.6rem; /* Default font size 16px */
+        font-family: "Roboto", sans-serif; /* Default font */
+        color: #333; /* Default text color */
+        background-color: #FDFFF5; /* Light background */
+        line-height: 1.6;
+        margin: 0;
+    }
+    a {
+      color: #365a97; /* Link color */
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: none; /* Remove underline on hover for nav-like links */
+      color: #1a3b6d; /* Darker hover */
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Header Styles */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1030; /* Ensure header is above timeline */
+        background-color: #fff; /* Explicit background needed */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    header .navbar {
+        padding: 10px 30px; /* Adjust padding */
+    }
+    header .navbar-brand img {
+         max-height: 40px; /* Control logo height */
+         width: auto;
+    }
+    header .nav-link {
+        color: black !important;
+        font-weight: 500;
+        font-size: 1.7rem;
+        transition: color 0.3s ease;
+        padding: 8px 0 !important; /* Bootstrap overrides */
+        margin-left: 40px; /* Spacing */
+    }
+     header .nav-link:first-child {
+         margin-left: 0; /* No extra margin */
+     }
+    header .nav-link:hover {
+        color: #365a97 !important;
+        text-decoration: none;
+    }
+
+    /* Footer Styles */
+    .footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 30px 20px 15px 20px;
+        background-color: black;
+        color: white;
+        width: 100%;
+        margin-top: 4em; /* Space above footer */
+    }
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 15px;
+    }
+    .footer-section h1 {
+        font-size: 2.4rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .line {
+        height: 1px;
+        background-color: #555;
+        width: 60%;
+        max-width: 250px;
+        margin: 15px auto;
+    }
+     .email-container {
+        margin-bottom: 15px;
+    }
+    .email-container p {
+        margin-bottom: 5px;
+        font-size: 1.6rem;
+        color: #ccc;
+    }
+    .email-container a {
+        font-size: 1.7rem;
+        font-weight: 400;
+        color: white;
+        word-break: break-all;
+    }
+     .email-container a:hover {
+         color: #eee;
+         text-decoration: underline;
+     }
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 10px;
+    }
+    .social-icons a {
+        font-size: 2.4rem;
+        color: white;
+        transition: color 0.3s, transform 0.2s;
+    }
+    .social-icons a:hover {
+        color: #ccc;
+        transform: scale(1.1);
+        text-decoration: none;
+    }
+    .footer-bottom {
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #333;
+        width: 100%;
+    }
+    .footer-bottom p {
+        font-size: 1.3rem;
+        color: #aaa;
+        margin: 0;
+    }
+
+
+    /* --------------------------------
+    Timeline Component Styles
+    -------------------------------- */
+    .cd-horizontal-timeline {
+      opacity: 0;
+      margin: 3em auto;
+      padding: 1em 0;
+      transition: opacity 0.2s;
+      width: 90%;
+      max-width: 1100px;
+    }
+    .cd-horizontal-timeline::before {
+      content: 'mobile';
+      display: none;
+    }
+    .cd-horizontal-timeline.loaded {
+      opacity: 1;
+    }
+    .cd-horizontal-timeline h1 {
+        text-align: center;
+        margin-bottom: 1.5em;
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        color: #333;
+    }
+
+    .cd-horizontal-timeline .timeline {
+        position: relative;
+        height: 120px; /* Increased height for text above/below */
+        margin: 0 auto;
+    }
+    .cd-horizontal-timeline .events-wrapper {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    /* Fades for timeline bar edges */
+    .cd-horizontal-timeline .events-wrapper::after,
+    .cd-horizontal-timeline .events-wrapper::before {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        height: 100%;
+        width: 45px; /* Match arrow margin/offset */
+    }
+    .cd-horizontal-timeline .events-wrapper::before {
+        left: 0;
+        background-image: linear-gradient(to right, #FDFFF5, rgba(253, 255, 245, 0));
+    }
+    .cd-horizontal-timeline .events-wrapper::after {
+        right: 0;
+        background-image: linear-gradient(to left, #FDFFF5, rgba(253, 255, 245, 0));
+    }
+
+    .cd-horizontal-timeline .events {
+        /* The actual timeline bar and container for LIs */
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 50%; /* Center the line */
+        transform: translateY(-50%);
+        height: 2px; /* Height of the line itself */
+        background: #dbd7d7;
+        transition: transform 0.4s;
+        /* Width is set by JS */
+    }
+     /* List reset */
+     .cd-horizontal-timeline ol {
+        list-style: none !important;
+        background: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: relative; /* Needed for absolute LIs */
+        height: 100%; /* Match parent height */
+     }
+     .cd-horizontal-timeline li {
+        list-style: none !important;
+        background: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: absolute; /* Events positioned absolutely */
+        /* Position LI top relative to timeline center */
+        top: 50%;
+        transform: translateY(-50%);
+        height: 100%; /* Take full height for positioning context */
+        /* Left position set by JS */
+     }
+     .cd-horizontal-timeline li::marker {
+        content: "" !important;
+        display: none !important;
+     }
+
+    .cd-horizontal-timeline .filling-line {
+        position: absolute;
+        z-index: 1; /* Above grey line */
+        left: 0;
+        top: 0; /* Align with grey line */
+        height: 100%; /* Match grey line height */
+        width: 100%; /* Scaled by JS */
+        background-color: #0f0f0f;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 0.3s;
+    }
+    /* Event link and dot positioning */
+    .cd-horizontal-timeline .events a {
+        position: absolute;
+        z-index: 3;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: 500;
+        padding: 3px 5px;
+        color: #383838;
+        /* Center the text block horizontally relative to LI's position */
+        left: 50%;
+        transform: translateX(-50%);
+        user-select: none;
+        white-space: nowrap;
+        cursor: pointer;
+        /* Default positioning (BELOW the line - for EVEN items) */
+        top: 50%; /* Position top edge at the timeline center */
+        margin-top: 18px; /* Push text down below the line+dot */
+    }
+    .cd-horizontal-timeline .events a::after {
+        /* The event dot */
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
+        border: 2px solid #0f0f0f;
+        background-color: #FDFFF5;
+        transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+        z-index: 4; /* Above text */
+        /* Default positioning (ON the line, relative to text BELOW) */
+        top: -25px; /* Pull dot up relative to link's top to land on the line */
+    }
+
+    /* --- Style ODD list items for ABOVE the line --- */
+    .cd-horizontal-timeline .events li:nth-child(odd) a {
+         top: auto; /* Reset top */
+         bottom: 50%; /* Position bottom edge relative to timeline center */
+         margin-top: 0; /* Reset margin-top */
+         margin-bottom: 18px; /* Push text up above the line+dot */
+    }
+    .cd-horizontal-timeline .events li:nth-child(odd) a::after {
+         top: auto; /* Reset top */
+         /* Push dot down relative to link's bottom to land on the line */
+         bottom: -25px; /* Adjust value if needed for perfect alignment */
+    }
+
+    /* Event states */
+    .no-touch .cd-horizontal-timeline .events a:hover::after {
+        background-color: #84a876;
+        border-color: #84a876;
+        transform: translateX(-50%) scale(1.2);
+    }
+    .cd-horizontal-timeline .events a.selected {
+        pointer-events: none;
+        color: #7b9d6f;
+        font-weight: 700;
+    }
+    .cd-horizontal-timeline .events a.selected::after {
+        background-color: #7b9d6f;
+        border-color: #7b9d6f;
+        transform: translateX(-50%) scale(1.3);
+    }
+    .cd-horizontal-timeline .events a.older-event::after {
+        border-color: #7b9d6f;
+    }
+
+    /* Navigation Arrows alignment */
+    .cd-timeline-navigation {
+        padding: 0; margin: 0; list-style: none;
+        position: absolute;
+        top: 50%; /* Center vertically within .timeline */
+        transform: translateY(-50%);
+        height: 40px; /* Match arrow height */
+        width: 100%;
+        left: 0;
+        z-index: 4; /* Above fades */
+        pointer-events: none; /* Container doesn't capture events */
+    }
+    .cd-timeline-navigation li {
+         padding: 0; margin: 0; list-style: none;
+         position: absolute; /* Position arrows within UL */
+         top: 0;
+         height: 100%;
+         pointer-events: auto; /* Arrows capture events */
+    }
+    .cd-timeline-navigation a {
+        display: block;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border: 2px solid #dbd7d7;
+        overflow: hidden;
+        color: transparent;
+        text-indent: 100%;
+        white-space: nowrap;
+        background-color: #FDFFF5;
+        transition: border-color 0.3s, background-color 0.3s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        position: relative; /* For icon positioning */
+    }
+    .cd-timeline-navigation a::before { /* Font Awesome icon */
+       font-family: "Font Awesome 6 Free";
+       font-weight: 900;
+       position: absolute; left: 50%; top: 50%;
+       transform: translate(-50%, -50%);
+       color: #383838;
+       font-size: 16px;
+       text-indent: 0; /* Show icon */
+    }
+    .cd-timeline-navigation li.prev-nav {
+       left: 0;
+       /* Adjust push-out to align visually outside the fade gradient */
+       transform: translateX(-45px);
+    }
+     .cd-timeline-navigation li.next-nav {
+        right: 0;
+        /* Adjust push-out to align visually outside the fade gradient */
+        transform: translateX(45px);
+     }
+    .cd-timeline-navigation a.prev::before { content: "\f053"; }
+    .cd-timeline-navigation a.next::before { content: "\f054"; }
+
+    /* Arrow states (hover, inactive) */
+    .no-touch .cd-timeline-navigation a:hover { border-color: #84a876; background-color: #f5f5f5; }
+    .no-touch .cd-timeline-navigation a:hover::before { color: #84a876; }
+    .cd-timeline-navigation a.inactive { cursor: not-allowed; border-color: #dbd7d7; background-color: #f9f9f9; opacity: 0.6; box-shadow: none; }
+    .cd-timeline-navigation a.inactive::before { color: #bdbdbd; }
+    .no-touch .cd-timeline-navigation a.inactive:hover { border-color: #dbd7d7; background-color: #f9f9f9; }
+    .no-touch .cd-timeline-navigation a.inactive:hover::before { color: #bdbdbd; }
+
+    /* Event Content Area */
+    .cd-horizontal-timeline .events-content {
+        position: relative;
+        width: 100%;
+        margin: 3em 0;
+        overflow: hidden;
+        transition: height 0.4s ease-in-out;
+        padding: 0 5%;
+    }
+    .cd-horizontal-timeline .events-content li {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        left: 0;
+        top: 0;
+        transform: translateX(100%);
+        opacity: 0;
+        animation-duration: 0.4s;
+        animation-timing-function: ease-in-out;
+        padding: 1em 5%;
+        visibility: hidden; /* Hide inactive */
+    }
+    .cd-horizontal-timeline .events-content li.selected {
+        position: relative; /* Take space */
+        z-index: 2;
+        opacity: 1;
+        transform: translateX(0);
+        visibility: visible; /* Show selected */
+    }
+    /* Animation classes */
+    .cd-horizontal-timeline .events-content li.enter-right { animation-name: cd-enter-right; }
+    .cd-horizontal-timeline .events-content li.leave-left { animation-name: cd-enter-right; animation-direction: reverse; }
+    .cd-horizontal-timeline .events-content li.enter-left { animation-name: cd-enter-left; }
+    .cd-horizontal-timeline .events-content li.leave-right { animation-name: cd-enter-left; animation-direction: reverse; }
+
+    /* Content styling */
+    .cd-horizontal-timeline .events-content li > * {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .cd-horizontal-timeline .events-content h2 {
+        font-weight: bold;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        line-height: 1.3;
+        font-size: 3.0rem;
+        text-align: center;
+        margin-bottom: 0.5em;
+    }
+    .cd-horizontal-timeline .events-content p {
+        font-size: 1.6rem;
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 1.5em;
+        text-align: center;
+    }
+
+    /* Gallery Styles */
+    .gallery {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 15px;
+        margin-top: 25px;
+        padding: 5px 0 20px 0;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
+        scroll-snap-type: x mandatory;
+        cursor: grab;
+    }
+    .gallery:active {
+         cursor: grabbing;
+    }
+    .gallery img {
+        height: 250px;
+        width: auto;
+        max-width: 80vw;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 3px 8px rgba(72, 72, 72, 0.15);
+        flex-shrink: 0;
+        scroll-snap-align: center;
+    }
+    .gallery::-webkit-scrollbar { height: 10px; }
+    .gallery::-webkit-scrollbar-track { background: #eee; border-radius: 5px; }
+    .gallery::-webkit-scrollbar-thumb { background-color: #aaa; border-radius: 5px; border: 2px solid #eee; }
+    .gallery::-webkit-scrollbar-thumb:hover { background-color: #888; }
+
+    /* --------------------------------
+    Media Queries
+    -------------------------------- */
+     @media (max-width: 991.98px) { /* Navbar collapse */
+         header .navbar-nav { margin-top: 10px; }
+         header .nav-link { margin-left: 0; padding: 10px 0 !important; text-align: center; border-bottom: 1px solid #eee; }
+         header .nav-link:last-child { border-bottom: none; }
+     }
+    @media (max-width: 767.98px) { /* Mobile adjustments */
+        html { font-size: 58%; }
+        /* Footer */
+        .footer { padding: 20px 15px 10px 15px; }
+        .footer-section h1 { font-size: 2.2rem; }
+        .email-container p, .email-container a { font-size: 1.6rem; }
+        .social-icons a { font-size: 2.2rem; }
+        .social-icons { gap: 20px; }
+        .line { width: 70%; }
+
+         /* Timeline Mobile */
+        .cd-horizontal-timeline { margin: 2em auto; width: 80%; }
+        .cd-horizontal-timeline h1 { font-size: 2.4rem; }
+        .cd-horizontal-timeline .timeline { height: 110px; /* Slightly more space for mobile text */ } /* No width override here, JS handles it */
+
+        /* Adjust arrow push-out for narrower screens */
+        .cd-horizontal-timeline .events-wrapper::before,
+        .cd-horizontal-timeline .events-wrapper::after { width: 30px; }
+        .cd-timeline-navigation li.prev-nav { transform: translateX(-30px); }
+        .cd-timeline-navigation li.next-nav { transform: translateX(30px); }
+
+        .cd-horizontal-timeline .events a { font-size: 1.2rem; margin-top: 16px; padding: 2px 3px; }
+        .cd-horizontal-timeline .events li:nth-child(odd) a { margin-bottom: 16px; }
+        .cd-horizontal-timeline .events a::after { height: 12px; width: 12px; top: -22px; }
+        .cd-horizontal-timeline .events li:nth-child(odd) a::after { bottom: -22px; }
+
+        .cd-timeline-navigation { height: 34px; }
+        .cd-timeline-navigation a { height: 34px; width: 34px; }
+        .cd-timeline-navigation a::before { font-size: 14px; }
+
+        /* Event Content Mobile */
+        .cd-horizontal-timeline .events-content { margin: 2em 0; padding: 0 2%; }
+        .cd-horizontal-timeline .events-content li { padding: 1em 3%; }
+        .cd-horizontal-timeline .events-content h2 { font-size: 2.4rem; }
+        .cd-horizontal-timeline .events-content p { font-size: 1.5rem; }
+        .gallery { margin-top: 15px; gap: 10px; padding-bottom: 15px; }
+        .gallery img { height: 200px; max-width: 75vw; border-radius: 6px; }
+    }
+    /* Tablet */
+    @media only screen and (min-width: 768px) {
+      .cd-horizontal-timeline::before { content: 'desktop'; }
+      .cd-horizontal-timeline .timeline { height: 120px; } /* Consistent height */
+      .cd-horizontal-timeline .events a { font-size: 1.4rem; }
+      .cd-horizontal-timeline .events-content h2 { font-size: 3.8rem; }
+      .cd-horizontal-timeline .events-content p { font-size: 1.7rem; }
+      .gallery img { height: 350px; max-width: 600px; }
+    }
+    /* Desktop */
+    @media only screen and (min-width: 1100px) {
+      .cd-horizontal-timeline { margin: 4em auto; }
+      .cd-horizontal-timeline .events-content h2 { font-size: 4.5rem; }
+      .cd-horizontal-timeline .events-content p { font-size: 1.8rem; }
+      .gallery img { height: 450px; }
+    }
+
+    /* Keyframes for Content Transitions */
+    @-webkit-keyframes cd-enter-right { 0% { opacity: 0; -webkit-transform: translateX(100%); visibility: hidden; } 1% { visibility: visible; } 100% { opacity: 1; -webkit-transform: translateX(0%); visibility: visible; } }
+    @-moz-keyframes cd-enter-right { 0% { opacity: 0; -moz-transform: translateX(100%); visibility: hidden; } 1% { visibility: visible; } 100% { opacity: 1; -moz-transform: translateX(0%); visibility: visible; } }
+    @keyframes cd-enter-right { 0% { opacity: 0; transform: translateX(100%); visibility: hidden; } 1% { visibility: visible; } 100% { opacity: 1; transform: translateX(0%); visibility: visible; } }
+    @-webkit-keyframes cd-enter-left { 0% { opacity: 0; -webkit-transform: translateX(-100%); visibility: hidden; } 1% { visibility: visible; } 100% { opacity: 1; -webkit-transform: translateX(0%); visibility: visible; } }
+    @-moz-keyframes cd-enter-left { 0% { opacity: 0; -moz-transform: translateX(-100%); visibility: hidden; } 1% { visibility: visible; } 100% { opacity: 1; -moz-transform: translateX(0%); visibility: visible; } }
+    @keyframes cd-enter-left { 0% { opacity: 0; transform: translateX(-100%); visibility: hidden; } 1% { visibility: visible; } 100% { opacity: 1; transform: translateX(0%); visibility: visible; } }
+</style>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/JAZBAA.svg" alt="Jazbaa Logo"> <!-- Ensure path is correct -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About us</a> <!-- Update hrefs as needed -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#events">Events Calendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#gallery">Gallery</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<main>
+    <section class="cd-horizontal-timeline loaded" id="events">
+        <h1>Past Events</h1>
+        <div class="timeline">
+            <div class="events-wrapper"> <!-- Container for scrolling events -->
+                <div class="events">   <!-- This element holds the line and event LIs -->
+                    <ol>
+                        <!-- Events: DD/MM/YYYY format -->
+                        <!-- NOTE: Event order in HTML determines visual order -->
+                        <li><a href="#0" data-date="06/02/2022">Shaam-e-Jazbaa</a></li>
+                        <li><a href="#0" data-date="11/04/2022">Sopaan</a></li>
+                        <li><a href="#0" data-date="04/08/2022">Freshers</a></li>
+                        <li><a href="#0" data-date="09/09/2022">Krishna Janmashtami</a></li>
+                        <li><a href="#0" data-date="02/09/2023">Ganesh Chaturthi</a></li>
+                        <li><a href="#0" data-date="07/11/2023">Noor-e-Jazbaa</a></li>
+                        <li><a href="#0" data-date="12/12/2023">Onam</a></li>
+                        <li><a href="#0" data-date="05/01/2024">Garba</a></li>
+                        <li><a href="#0" data-date="10/01/2024" class="selected">Winter Ball</a></li>
+                    </ol>
+                    <span class="filling-line" aria-hidden="true"></span>
+                </div>
+            </div>
+
+            <!-- Navigation arrows positioned relative to .timeline -->
+            <ul class="cd-timeline-navigation">
+                <li class="prev-nav"><a href="#0" class="prev inactive">Prev</a></li>
+                <li class="next-nav"><a href="#0" class="next">Next</a></li>
+            </ul>
+        </div>
+
+        <div class="events-content">
+             <!-- Event Content OL - Order MUST match timeline OL -->
+             <ol>
+                <li data-date="06/02/2022">
+                    <h2>Shaam-e-Jazbaa</h2>
+                    <p>An enchanting evening showcasing diverse talents in music, dance, and poetry.</p>
+                    <div class="gallery">
+                        <img src="assets/images/gallery/DSC_0714.JPG" alt="Musical performance at Shaam-e-Jazbaa">
+                        <img src="assets/images/gallery/DSC_0711.JPG" alt="Dance performance during the evening">
+                        <img src="assets/images/gallery/DSC_0691.JPG" alt="Poetry reading at Shaam-e-Jazbaa">
+                        <img src="assets/images/gallery/DSC_0678.JPG" alt="Audience enjoying Shaam-e-Jazbaa">
+                        <img src="assets/images/gallery/DSC_0640.JPG" alt="Artist showcasing work">
+                        <img src="assets/images/gallery/DSC_0638.JPG" alt="Stage lighting for Shaam-e-Jazbaa">
+                        <img src="assets/images/gallery/DSC_0624.JPG" alt="Group performance snapshot">
+                        <img src="assets/images/gallery/DSC_0612.JPG" alt="Another musical act">
+                        <img src="assets/images/gallery/DSC_0604.JPG" alt="Close-up of a performer">
+                        <img src="assets/images/gallery/DSC_0594.JPG" alt="Atmosphere of Shaam-e-Jazbaa">
+                    </div>
+                </li>
+                 <li data-date="11/04/2022">
+                    <h2>Sopaan</h2>
+                     <p>An event focused on cultural exchange, workshops, and insightful discussions.</p>
+                     <div class="gallery">
+                        <img src="assets/images/gallery/DSC_0269.JPG" alt="Sopaan event stage setup">
+                        <img src="assets/images/gallery/DSC_0271.JPG" alt="Speaker presenting at Sopaan">
+                        <img src="assets/images/gallery/DSC_0265.JPG" alt="Audience at Sopaan event">
+                        <img src="assets/images/gallery/DSC_0208.JPG" alt="Interactive session during Sopaan">
+                        <img src="assets/images/gallery/DSC_0187.JPG" alt="Cultural performance at Sopaan">
+                        <img src="assets/images/gallery/DSC_0164.JPG" alt="Panel discussion at Sopaan">
+                        <img src="assets/images/gallery/DSC_0166.JPG" alt="Networking during Sopaan">
+                        <img src="assets/images/gallery/DSC_0149.JPG" alt="Workshop activity at Sopaan">
+                        <img src="assets/images/gallery/DSC_0135.JPG" alt="Close-up of Sopaan branding">
+                        <img src="assets/images/gallery/DSC_0127.JPG" alt="Guest speaker at Sopaan 2021">
+                        <img src="assets/images/gallery/DSC_0102.JPG" alt="Participants engaged in Sopaan event">
+                        <img src="assets/images/gallery/DSC_0081.JPG" alt="Another view of Sopaan activities">
+                        <img src="assets/images/gallery/DSC_0082.JPG" alt="Concluding moments of Sopaan 2021">
+                    </div>
+                </li>
+                 <li data-date="04/08/2022">
+                    <h2>Freshers</h2>
+                    <p>Welcoming the new batch of students with icebreakers, performances, and fun.</p>
+                     <div class="gallery">
+                        <img src="assets/images/gallery/IMG_7157.JPG" alt="New students participating in icebreaker games">
+                        <img src="assets/images/gallery/IMG_7264.JPG" alt="Performance by senior students for freshers">
+                        <img src="assets/images/gallery/IMG_7260.JPG" alt="Group photo of the fresher batch">
+                        <img src="assets/images/gallery/IMG_7185.JPG" alt="Welcome address during Freshers event">
+                        <img src="assets/images/gallery/IMG_7173.JPG" alt="Students enjoying the Freshers party">
+                        <img src="assets/images/gallery/IMG_7121.JPG" alt="Stage performance at Freshers 2022">
+                        <img src="assets/images/gallery/DSC_0823.jpeg" alt="Candid shot of students mingling">
+                        <img src="assets/images/gallery/DSC_0807.jpeg" alt="Another performance at the Freshers event">
+                        <img src="assets/images/gallery/DSC_0805.jpeg" alt="Audience watching the Freshers show">
+                        <img src="assets/images/gallery/DSC_0793.jpeg" alt="Decorations for the Freshers welcome">
+                        <img src="assets/images/gallery/DSC_0778.jpeg" alt="Students interacting during the event">
+                        <img src="assets/images/gallery/DSC_0748.jpeg" alt="Fun activity at Freshers 2022">
+                    </div>
+                </li>
+                 <li data-date="09/09/2022">
+                    <h2>Krishna Janmashtami</h2>
+                    <p>Celebrating the birth of Lord Krishna with Matki Phod, bhajans, and cultural dances.</p>
+                    <div class="gallery">
+                        <img src="assets/images/gallery/IMG_5226.jpeg" alt="Krishna Janmashtami decorations">
+                        <img src="assets/images/gallery/Copy of IMG_5234.jpeg" alt="Performance depicting Krishna's life">
+                        <img src="assets/images/gallery/IMG_5220.jpeg" alt="Dahi Handi preparations">
+                        <img src="assets/images/gallery/IMG_5232.jpeg" alt="Participants forming a human pyramid">
+                        <img src="assets/images/gallery/IMG_5244.jpeg" alt="Devotional singing (Bhajans)">
+                        <img src="assets/images/gallery/IMG_5247.jpeg" alt="Children dressed as Krishna and Radha">
+                        <img src="assets/images/gallery/IMG_5250.jpeg" alt="Close-up of the Dahi Handi pot">
+                    </div>
+                </li>
+                 <li data-date="02/09/2023">
+                    <h2>Ganesh Chaturthi</h2>
+                     <p>Welcoming Lord Ganesha with devotion, modaks, and festive celebrations.</p>
+                    <div class="gallery">
+                        <img src="assets/images/gallery/IMG_5464.jpeg" alt="Ganesh idol decorated for Chaturthi">
+                        <img src="assets/images/gallery/IMG_5456.jpeg" alt="Devotees offering prayers">
+                        <img src="assets/images/gallery/IMG_5460.jpeg" alt="Close-up of the Ganesh Murti">
+                        <img src="assets/images/gallery/IMG_5479.jpeg" alt="Cultural program during Ganesh Chaturthi">
+                        <img src="assets/images/gallery/IMG_5481.jpeg" alt="Distribution of Prasad">
+                        <img src="assets/images/gallery/IMG_5489.jpeg" alt="Children participating in celebrations">
+                    </div>
+                </li>
+                 <li data-date="07/11/2023">
+                    <h2>Noor-e-Jazbaa</h2>
+                    <p>An evening dedicated to the beauty of Urdu poetry, ghazals, and soulful music.</p>
+                    <div class="gallery">
+                        <img src="assets/images/gallery/IMG20241107175200.jpg" alt="Performer reciting poetry at Noor-e-Jazbaa">
+                        <img src="assets/images/gallery/IMG20241107154757.jpg" alt="Musician playing an instrument">
+                        <img src="assets/images/gallery/IMG20241107154748.jpg" alt="Audience listening intently">
+                        <img src="assets/images/gallery/IMG20241107154739.jpg" alt="Stage setup for Noor-e-Jazbaa">
+                        <img src="assets/images/gallery/IMG20241107153054.jpg" alt="Speaker addressing the audience">
+                        <img src="assets/images/gallery/IMG20241107181338.jpg" alt="Atmospheric lighting at the event">
+                        <img src="assets/images/gallery/IMG20241107180503.jpg" alt="Another performer on stage">
+                        <img src="assets/images/gallery/IMG20241107180443.jpg" alt="Guests mingling during Noor-e-Jazbaa">
+                    </div>
+                </li>
+                 <li data-date="12/12/2023">
+                    <h2>Onam</h2>
+                    <p>Celebrating the harvest festival of Kerala with Pookalam, Sadhya, and cultural programs.</p>
+                     <div class="gallery">
+                        <img src="assets/images/gallery/IMG20240913173436.jpg" alt="Onam Pookalam (floral carpet)">
+                        <img src="assets/images/gallery/IMG20240913173409.jpg" alt="Traditional Onam attire">
+                        <img src="assets/images/gallery/IMG20240913172138.jpg" alt="Serving the Onam Sadhya (feast)">
+                        <img src="assets/images/gallery/IMG20240913172014.jpg" alt="Group enjoying the Onam celebrations">
+                        <img src="assets/images/gallery/IMG20240913170057.jpg" alt="Details of Onam decorations">
+                        <img src="assets/images/gallery/IMG20240913170145.jpg" alt="Cultural performance during Onam">
+                        <img src="assets/images/gallery/IMG20240913170722.jpg" alt="Participants in Onam games">
+                        <img src="assets/images/gallery/IMG20240913172419.jpg" alt="Another view of the Pookalam">
+                        <img src="assets/images/gallery/IMG20240913173239.jpg" alt="Smiling faces at the Onam event">
+                    </div>
+                </li>
+                 <li data-date="05/01/2024">
+                    <h2>Garba</h2>
+                    <p>A vibrant night filled with energetic Garba and Dandiya Raas dances.</p>
+                    <div class="gallery">
+                        <img src="assets/images/gallery/IMG_9439.JPG" alt="Dancers in colorful attire at Garba 2024">
+                        <img src="assets/images/gallery/IMG_9444.JPG" alt="Close-up of Garba dance movements">
+                        <img src="assets/images/gallery/IMG_9466.JPG" alt="Wide shot of the Garba event venue">
+                        <img src="assets/images/gallery/IMG_9481.JPG" alt="Attendees enjoying the Garba night">
+                        <img src="assets/images/gallery/IMG_9488.JPG" alt="Musicians playing for the Garba dance">
+                        <img src="assets/images/gallery/IMG_9509.JPG" alt="Another view of dancers at Garba 2024">
+                    </div>
+                </li>
+                 <li class="selected" data-date="10/01/2024">
+                    <h2>Winter Ball</h2>
+                    <p>Celebrating the season in style with music, dance, and elegant attire.</p>
+                    <div class="gallery">
+                        <img src="assets/images/gallery/IMG_3378.jpg" alt="Students posing at Winter Ball 2024">
+                        <img src="assets/images/gallery/IMG_3379.jpg" alt="Couple dancing at Winter Ball 2024">
+                        <img src="assets/images/gallery/IMG_3449.jpg" alt="Group photo during Winter Ball 2024">
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+     <div class="footer-content">
+         <div class="footer-section">
+             <h1>Get In Touch</h1>
+             <div class="line"></div>
+             <div class="email-container">
+                 <p>Email:</p>
+                 <a href="mailto:culturalministry@ashoka.edu.in">culturalministry@ashoka.edu.in</a>
+             </div>
+             <div class="line"></div>
+             <div class="social-icons">
+                 <a href="https://www.instagram.com/jazbaa.ashoka/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                 <a href="https://x.com/JazbaaAshoka" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                 <a href="https://www.linkedin.com/company/jazbaa-the-cultural-ministry/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                 <a href="https://form.jotform.com/242996769922074" target="_blank" aria-label="Contact Form"><i class="fa-solid fa-align-right"></i></a>
+             </div>
+         </div>
+     </div>
+     <div class="footer-bottom">
+         <p>© <span id="current-year"></span> Jazbaa. All rights reserved.</p>
+          <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+     </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Timeline Script -->
+<script>
+jQuery(document).ready(function($){
+    var timelines = $('.cd-horizontal-timeline'),
+        // Define minimum distance (used if calculated space is too small)
+        eventsMinDistance = 90, // Minimum px distance between events
+        // Define padding from the edges of the timeline wrapper
+        edgePadding = 60; // Px padding on left and right
+
+    (timelines.length > 0) && initTimeline(timelines);
+
+    function initTimeline(timelines) {
+        timelines.each(function(){
+            var timeline = $(this),
+                timelineComponents = {};
+            // Cache components
+            timelineComponents['timelineWrapper'] = timeline.find('.events-wrapper');
+            timelineComponents['eventsWrapper'] = timelineComponents['timelineWrapper'].children('.events');
+            timelineComponents['fillingLine'] = timelineComponents['eventsWrapper'].children('.filling-line');
+            timelineComponents['timelineEvents'] = timelineComponents['eventsWrapper'].find('a');
+            timelineComponents['timelineDates'] = parseDate(timelineComponents['timelineEvents']); // Keep for 'older-event' class logic
+            timelineComponents['timelineNavigation'] = timeline.find('.cd-timeline-navigation');
+            timelineComponents['eventsContent'] = timeline.children('.events-content');
+            timelineComponents['timelineTotWidth'] = 0; // Will be calculated
+            timelineComponents['maxTranslate'] = 0; // Will be calculated
+
+            // --- Set event positions evenly with edge padding ---
+            setDatePosition(timelineComponents, eventsMinDistance, edgePadding);
+
+            // --- Calculate widths and limits based on new positions ---
+            timelineComponents['timelineTotWidth'] = setTimelineWidth(timelineComponents, edgePadding);
+            timelineComponents['maxTranslate'] = calculateMaxTranslate(timelineComponents);
+
+            timeline.addClass('loaded');
+
+            // --- Event Listeners ---
+            // Arrow navigation
+            timelineComponents['timelineNavigation'].on('click', '.next', function(event){
+                event.preventDefault();
+                if (!$(this).hasClass('inactive')) { updateSlide(timelineComponents, 'next'); }
+            });
+            timelineComponents['timelineNavigation'].on('click', '.prev', function(event){
+                event.preventDefault();
+                 if (!$(this).hasClass('inactive')) { updateSlide(timelineComponents, 'prev'); }
+            });
+
+            // Click on event
+            timelineComponents['eventsWrapper'].on('click', 'a', function(event){
+                event.preventDefault();
+                // Check parent LI as well for clicks near the edge
+                if (!$(this).hasClass('selected') && !$(this).parent('li').hasClass('selected')) {
+                     selectNewEvent($(this), timelineComponents);
+                 }
+            });
+
+            // Content Swipe Gestures
+            enableContentSwipe(timelineComponents);
+
+            // Keyboard navigation
+            $(document).keyup(function(event){
+                if(event.which=='37' && elementInViewport(timeline.get(0)) ) { showNewContent(timelineComponents, 'prev'); }
+                else if( event.which=='39' && elementInViewport(timeline.get(0))) { showNewContent(timelineComponents, 'next'); }
+            });
+
+            // Resize handler
+            $(window).on('resize orientationchange', function(){
+                // Recalculate positions, widths, and limits on resize
+                setDatePosition(timelineComponents, eventsMinDistance, edgePadding);
+                timelineComponents['timelineTotWidth'] = setTimelineWidth(timelineComponents, edgePadding);
+                timelineComponents['maxTranslate'] = calculateMaxTranslate(timelineComponents);
+
+                // Adjust content height
+                var selectedContent = timelineComponents['eventsContent'].find('li.selected');
+                if(selectedContent.length > 0) {
+                     setTimeout(function() {
+                         var h = selectedContent.outerHeight();
+                         timelineComponents['eventsContent'].css('height', h + 'px');
+                     }, 150);
+                }
+
+                // Re-apply current translation to clamp if necessary and update arrows
+                var currentTranslate = getTranslateValue(timelineComponents['eventsWrapper']);
+                translateTimeline(timelineComponents, currentTranslate);
+            });
+
+            // Initialize height and arrow states
+            var initialSelectedContent = timelineComponents['eventsContent'].find('li.selected');
+            if (initialSelectedContent.length > 0) {
+                setTimeout(function() {
+                    var h = initialSelectedContent.outerHeight();
+                    timelineComponents['eventsContent'].css('height', h + 'px');
+                }, 100);
+            } else {
+                 // If no event is pre-selected, select the first one
+                 var firstEvent = timelineComponents['timelineEvents'].first();
+                 if (firstEvent.length) {
+                     selectNewEvent(firstEvent, timelineComponents);
+                 }
+            }
+            // Set initial arrow state based on position 0
+            translateTimeline(timelineComponents, 0);
+
+        }); // end timelines.each
+    } // end initTimeline
+
+    // Helper to select a new event
+    function selectNewEvent(newEventLink, timelineComponents) {
+         var currentEventLink = timelineComponents['timelineEvents'].filter('.selected');
+         currentEventLink.removeClass('selected'); // Deselect old link
+         currentEventLink.parent('li').removeClass('selected'); // Deselect old li
+
+         newEventLink.addClass('selected'); // Select new link
+         newEventLink.parent('li').addClass('selected'); // Select new li
+
+         updateOlderEvents(newEventLink); // Update styling
+         updateFilling(newEventLink, timelineComponents['fillingLine'], timelineComponents['timelineTotWidth']);
+         updateVisibleContent(newEventLink, timelineComponents['eventsContent']);
+         updateTimelinePosition('click', newEventLink, timelineComponents); // Center if needed
+    }
+
+    // Move timeline via arrow buttons
+    function updateSlide(timelineComponents, direction) {
+        var translateValue = getTranslateValue(timelineComponents['eventsWrapper']);
+        var wrapperWidth = timelineComponents['timelineWrapper'].width();
+        var step = wrapperWidth * 0.7; // Scroll amount
+        var newTranslate = (direction === 'next') ? translateValue - step : translateValue + step;
+        translateTimeline(timelineComponents, newTranslate);
+    }
+
+    // Show new content via swipe/keys
+    function showNewContent(timelineComponents, direction) {
+        var currentEventItem = timelineComponents['eventsWrapper'].find('li.selected'); // Find selected LI
+        var newEventItem = (direction === 'next') ? currentEventItem.next('li') : currentEventItem.prev('li');
+
+        if (newEventItem.length > 0) {
+            var newEventLink = newEventItem.children('a'); // Get link inside the new LI
+            selectNewEvent(newEventLink, timelineComponents); // Select the new event
+            // No need to call updateTimelinePosition here, selectNewEvent does it
+        }
+    }
+
+    // Adjust timeline scroll position to center the selected event if necessary
+    function updateTimelinePosition(string, event, timelineComponents) {
+        var maxTranslate = timelineComponents['maxTranslate'];
+        var eventLeft = parseFloat(event.data('left-pos')); // Use stored position
+        var timelineWrapperWidth = timelineComponents['timelineWrapper'].width();
+        var currentTranslate = getTranslateValue(timelineComponents['eventsWrapper']);
+
+        // The 'left-pos' is the center of the event dot/text block
+        var targetTranslate = timelineWrapperWidth / 2 - eventLeft;
+        targetTranslate = Math.max(maxTranslate, Math.min(0, targetTranslate)); // Clamp
+
+        // Determine if translation is needed
+        var viewportLeft = -currentTranslate;
+        var viewportRight = viewportLeft + timelineWrapperWidth;
+        var buffer = timelineWrapperWidth * 0.1; // Viewport buffer zone (smaller buffer)
+
+        // Translate if it's arrow/key navigation OR if a clicked event is near the edges
+        if (string === 'next' || string === 'prev' || (string === 'click' && (eventLeft < viewportLeft + buffer || eventLeft > viewportRight - buffer))) {
+            translateTimeline(timelineComponents, targetTranslate);
+        } else if (string === 'click') {
+            // If click is not near edge, just ensure arrows are updated correctly
+             translateTimeline(timelineComponents, currentTranslate);
+        }
+    }
+
+    // Apply translation value and update arrow states
+    function translateTimeline(timelineComponents, value) {
+        var eventsWrapper = timelineComponents['eventsWrapper'].get(0);
+        var maxTranslate = timelineComponents['maxTranslate']; // Get the stored max translate
+
+        value = Math.max(maxTranslate, Math.min(0, value)); // Clamp the value
+
+        setTransformValue(eventsWrapper, 'translateX', value + 'px');
+
+        // Update navigation arrow visibility
+        var inactiveMargin = 1; // Tolerance for floating point comparison
+        timelineComponents['timelineNavigation'].find('.prev').toggleClass('inactive', value >= -inactiveMargin);
+        timelineComponents['timelineNavigation'].find('.next').toggleClass('inactive', value <= maxTranslate + inactiveMargin);
+    }
+
+    // Update the progress bar (filling line)
+    function updateFilling(selectedEvent, filling, totWidth) {
+         var eventLeft = parseFloat(selectedEvent.data('left-pos')); // Use stored position
+         if (isNaN(eventLeft)) { // Fallback
+             eventLeft = parseFloat(selectedEvent.parent('li').css('left')) || 0;
+         }
+         var scaleValue = totWidth > 0 ? eventLeft / totWidth : 0; // Scale based on center position
+         scaleValue = Math.max(0, Math.min(1, scaleValue)); // Clamp 0-1
+         setTransformValue(filling.get(0), 'scaleX', scaleValue);
+    }
+
+    // --- MODIFIED: Set event positions evenly with edge padding ---
+    function setDatePosition(timelineComponents, minDistance, padding) {
+        var timelineWrapperWidth = timelineComponents['timelineWrapper'].width();
+        var totalEvents = timelineComponents['timelineEvents'].length;
+        if (totalEvents < 1) return;
+
+        // Calculate the usable width for spacing events *between* the edge paddings
+        // Ensure usableWidth is not negative if padding is large
+        var usableWidth = Math.max(0, timelineWrapperWidth - (2 * padding));
+
+        // Calculate the distance between event centers
+        var calculatedDistance;
+        if (totalEvents > 1) {
+            // Divide usable width by the number of gaps
+            calculatedDistance = usableWidth / (totalEvents - 1);
+            // Ensure minimum distance if calculated distance is too small
+            calculatedDistance = Math.max(calculatedDistance, minDistance);
+        } else {
+            // If only one event, distance is not applicable for spacing
+            calculatedDistance = 0;
+        }
+
+        // Now position the events
+        for (var i = 0; i < totalEvents; i++) {
+             var currentEvent = timelineComponents['timelineEvents'].eq(i);
+             var positionToSet;
+
+             if (totalEvents === 1) {
+                 // Center the single event within the wrapper width
+                 positionToSet = timelineWrapperWidth / 2;
+             } else {
+                 // Position based on calculated distance and edge padding
+                 // Start at 'padding', then add increments of 'calculatedDistance'
+                 positionToSet = padding + (i * calculatedDistance);
+             }
+
+             // Store the calculated position (center of the dot/text) on the link
+             currentEvent.data('left-pos', positionToSet);
+             // Apply the position to the parent LI element's left style
+             // The LI's left should correspond to the dot's center
+             currentEvent.parent('li').css('left', positionToSet + 'px');
+         }
+    }
+
+    // --- MODIFIED: Calculate and set the total width of the events container ---
+    function setTimelineWidth(timelineComponents, padding) {
+         var totalEvents = timelineComponents['timelineEvents'].length;
+         var totalWidth = 0;
+         var wrapperWidth = timelineComponents['timelineWrapper'].width(); // Get container width
+
+         if (totalEvents > 0) {
+             var lastEvent = timelineComponents['timelineEvents'].last();
+             // Use the stored position data (center of the last event)
+             var lastEventPos = parseFloat(lastEvent.data('left-pos'));
+              if (isNaN(lastEventPos)) { // Fallback
+                 lastEventPos = parseFloat(lastEvent.parent('li').css('left')) || 0;
+              }
+
+             // Total width = position of the center of the last event + the right edge padding
+             totalWidth = lastEventPos + padding;
+
+             // Ensure the timeline is at least as wide as its container to prevent weirdness
+             // This makes sure the scroll area isn't smaller than the viewable area.
+             totalWidth = Math.max(totalWidth, wrapperWidth);
+
+         } else {
+             totalWidth = wrapperWidth; // Default width if no events
+         }
+
+         timelineComponents['eventsWrapper'].css('width', totalWidth + 'px');
+         timelineComponents['timelineTotWidth'] = totalWidth; // Store the calculated width
+
+         // Update filling line for the initially selected event (existing logic is fine)
+         var selectedEvent = timelineComponents['timelineEvents'].filter('.selected').first();
+          if (selectedEvent.length) {
+                if (!selectedEvent.parent('li').hasClass('selected')) {
+                    selectedEvent.parent('li').addClass('selected');
+                }
+              updateFilling(selectedEvent, timelineComponents['fillingLine'], totalWidth);
+          } else if (totalEvents > 0) {
+              // If nothing selected, ensure filling line starts at 0 for the first (soon to be selected) event
+              updateFilling(timelineComponents['timelineEvents'].first(), timelineComponents['fillingLine'], totalWidth);
+          }
+
+
+         return totalWidth; // Return the calculated total width
+    }
+
+    // Animate content panels in/out
+    function updateVisibleContent(newEvent, eventsContent) {
+        var eventDate = newEvent.data('date');
+        var newContent = eventsContent.find('li[data-date="' + eventDate + '"]');
+        var visibleContent = eventsContent.find('li.selected'); // Find the LI that is currently selected
+
+        // If clicking the same event or target not found, only adjust height maybe
+        if (newContent.is(visibleContent) || newContent.length === 0) {
+             if (newContent.length > 0) {
+                var currentHeight = newContent.outerHeight();
+                eventsContent.stop().animate({ height: currentHeight + 'px' }, 300);
+             }
+            return;
+        }
+
+        var newContentHeight = newContent.outerHeight(); // Get height before animation
+
+        // Determine animation direction
+        var animationClassEntering, animationClassLeaving;
+        if (newContent.index() > visibleContent.index()) {
+            animationClassEntering = 'enter-right'; animationClassLeaving = 'leave-left';
+        } else {
+            animationClassEntering = 'enter-left'; animationClassLeaving = 'leave-right';
+        }
+
+        // --- Immediate Class Changes & Height Animation ---
+        visibleContent.removeClass('selected'); // Deselect old content LI immediately
+        newContent.addClass('selected');      // Select new content LI immediately
+        eventsContent.stop().animate({ height: newContentHeight + 'px' }, 400, 'swing'); // Animate container height
+
+        // --- Animate Content Swap ---
+        visibleContent.addClass(animationClassLeaving); // Add exit animation to old
+        newContent.addClass(animationClassEntering);    // Add enter animation to new
+
+        // --- Cleanup after Animation ---
+        eventsContent.off('animationend webkitAnimationEnd'); // Remove previous handlers
+        eventsContent.one('animationend webkitAnimationEnd', 'li', function() {
+             var $this = $(this);
+             // Remove ALL animation classes from the element that finished
+             $this.removeClass('enter-right enter-left leave-right leave-left');
+             // Hide non-selected items properly after animation
+             if (!$this.hasClass('selected')) {
+                  $this.css('visibility', 'hidden');
+             }
+        });
+
+        // Fallback cleanup (robustness)
+        setTimeout(function() {
+            eventsContent.find('li').each(function() {
+                 var $li = $(this);
+                 $li.removeClass('enter-right enter-left leave-right leave-left'); // Clean classes
+                  if (!$li.hasClass('selected')) {
+                      $li.css('visibility', 'hidden'); // Ensure non-selected are hidden
+                  } else {
+                       $li.css('visibility', 'visible'); // Ensure selected is visible
+                  }
+            });
+             // Final height check after fallback
+             var finalSelectedContent = eventsContent.find('li.selected');
+             if (finalSelectedContent.length > 0) {
+                 eventsContent.css('height', finalSelectedContent.outerHeight() + 'px');
+             }
+        }, 550); // Duration slightly longer than CSS animation
+    }
+
+    // Update 'older-event' class on timeline links
+    function updateOlderEvents(event) {
+        var currentItem = event.parent('li'); // Get the LI element
+        // NOTE: This logic assumes chronological order in the HTML structure
+        currentItem.prevAll('li').children('a').addClass('older-event'); // Mark previous siblings' links
+        event.removeClass('older-event'); // Ensure the selected link itself isn't marked
+        currentItem.nextAll('li').children('a').removeClass('older-event'); // Remove mark from next siblings' links
+    }
+
+    // Get CSS translate value (reliable)
+    function getTranslateValue(element) {
+        var style = window.getComputedStyle(element.get(0));
+        var matrix = style['transform'] || style.webkitTransform || style.mozTransform;
+        if (!matrix || matrix === 'none') { return 0; }
+        var matrixType = matrix.includes('3d') ? '3d' : '2d';
+        var matrixValues = matrix.match(/matrix.*\((.+)\)/);
+        if (!matrixValues) return 0;
+        matrixValues = matrixValues[1].split(', ');
+        if (matrixType === '2d') { return parseFloat(matrixValues[4]) || 0; }
+        else { return parseFloat(matrixValues[12]) || 0; }
+    }
+
+    // Set CSS transform value
+    function setTransformValue(element, property, value) {
+         element.style["transform"] = property + "(" + value + ")";
+    }
+
+    // Parse dates from data attributes (used for 'older-event' visually only IF events aren't sorted in HTML)
+    // With current implementation (events sorted in HTML), this isn't strictly needed for 'older-event' class,
+    // but kept as it was part of the original script structure.
+    function parseDate(events) {
+         var dateArrays = [];
+         events.each(function(){
+             var dateStr = $(this).data('date');
+             var dateComp = dateStr ? dateStr.split('/') : null;
+             if (dateComp && dateComp.length === 3) {
+                 var day = parseInt(dateComp[0], 10); var month = parseInt(dateComp[1], 10) - 1; var year = parseInt(dateComp[2], 10);
+                 var newDate = new Date(Date.UTC(year, month, day)); // Use UTC to avoid timezone issues
+                 if (!isNaN(day) && !isNaN(month) && !isNaN(year) && year > 1900 && year < 2100 && !isNaN(newDate.getTime())) {
+                      dateArrays.push(newDate);
+                 } else { dateArrays.push(null); }
+             } else { dateArrays.push(null); }
+         });
+         // No need to sort here as visual order depends on HTML order now
+         return dateArrays;
+    }
+
+    // Check if element is in viewport
+    function elementInViewport(el) {
+         if (!el) return false;
+         var rect = el.getBoundingClientRect();
+         return ( rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth) );
+    }
+
+    // Check CSS media query breakpoint identifier
+    function checkMQ() {
+         var content = window.getComputedStyle(document.querySelector('.cd-horizontal-timeline'), '::before').getPropertyValue('content');
+         return content.replace(/^['"]|['"]$/g, "");
+    }
+
+    // --- MODIFIED: Calculate maximum scroll amount (negative value) ---
+     function calculateMaxTranslate(timelineComponents) {
+         var wrapperWidth = timelineComponents['timelineWrapper'].width();
+         // Use stored total width (which includes padding beyond last event)
+         var timelineWidth = timelineComponents['timelineTotWidth'] || 0;
+         // Max scroll is the difference, ensuring it's negative or zero
+         return Math.min(0, wrapperWidth - timelineWidth);
+     }
+
+     // Content Swipe Functionality (robust check against gallery scroll)
+     function enableContentSwipe(timelineComponents) {
+        var contentElement = timelineComponents['eventsContent'];
+         var touchStartX = 0, touchEndX = 0, touchStartY = 0, touchEndY = 0;
+         var isScrollingGallery = false; // Flag if touch started in gallery
+         var isPotentialSwipe = false; // Flag if horizontal movement > vertical
+         var swipeThreshold = 60, scrollThreshold = 40;
+
+         contentElement.on('touchstart', function(event) {
+             // Check if touch starts within the gallery element
+             isScrollingGallery = $(event.target).closest('.gallery').length > 0;
+             // Reset flags and coordinates for each new touch start
+             isPotentialSwipe = false;
+             if (isScrollingGallery) {
+                  touchStartX = 0; // Ensure no accidental swipe trigger
+                  return; // Do nothing more if touch starts in gallery
+             }
+             // Record start coordinates only if outside gallery
+             touchStartX = event.originalEvent.touches[0].screenX;
+             touchStartY = event.originalEvent.touches[0].screenY;
+             touchEndX = 0; touchEndY = 0; // Reset end points
+         }, { passive: true }); // Use passive listener
+
+         contentElement.on('touchmove', function(event) {
+             // If touch started in gallery or wasn't properly initiated, ignore move
+             if (isScrollingGallery || touchStartX === 0) return;
+
+             // Record current position
+             var currentX = event.originalEvent.touches[0].screenX;
+             var currentY = event.originalEvent.touches[0].screenY;
+             touchEndX = currentX; // Update end X continuously
+             touchEndY = currentY; // Update end Y continuously
+
+             // Determine if movement is primarily horizontal (potential swipe)
+             var deltaX = Math.abs(currentX - touchStartX);
+             var deltaY = Math.abs(currentY - touchStartY);
+
+             // Check if horizontal movement is significantly greater than vertical
+             // Add a small threshold to avoid flagging tiny movements
+             if (deltaX > deltaY && deltaX > 10) {
+                 isPotentialSwipe = true;
+                 // If it's potentially a swipe, prevent default browser scroll/actions
+                 // This prevents vertical page scrolling while user intends to swipe horizontally
+                  event.preventDefault(); // Only prevent default if horizontal swipe is likely
+             } else {
+                 isPotentialSwipe = false; // Reset if vertical scroll takes over
+             }
+
+         }, { passive: false }); // Use passive: false ONLY because preventDefault might be called
+
+         contentElement.on('touchend', function(event) {
+             // If touch started in gallery or wasn't properly initiated, ignore touchend
+             if (isScrollingGallery || touchStartX === 0) {
+                  isScrollingGallery = false; // Reset flag
+                  touchStartX = 0;
+                  return;
+             }
+
+             // If endX/Y weren't updated during move (a tap), use changedTouches
+             if (touchEndX === 0) { touchEndX = event.originalEvent.changedTouches[0].screenX; }
+             if (touchEndY === 0) { touchEndY = event.originalEvent.changedTouches[0].screenY; }
+
+             // Calculate total movement deltas
+             var deltaX = touchEndX - touchStartX;
+             var deltaY = touchEndY - touchStartY;
+
+             // Check 1: Was it mostly vertical scrolling? (User intended to scroll page, not swipe)
+             if (Math.abs(deltaY) > scrollThreshold && Math.abs(deltaY) > Math.abs(deltaX) * 1.5) {
+                 // console.log("Vertical scroll detected, swipe ignored");
+             }
+             // Check 2: Was horizontal movement sufficient for a swipe?
+             else if (Math.abs(deltaX) > swipeThreshold) {
+                 if (deltaX < 0) { // Swiped Left
+                     showNewContent(timelineComponents, 'next');
+                 } else { // Swiped Right
+                     showNewContent(timelineComponents, 'prev');
+                 }
+             }
+              // else { console.log("Tap or insufficient swipe movement"); }
+
+             // Reset all state variables for the next touch interaction
+             touchStartX = touchEndX = touchStartY = touchEndY = 0;
+             isScrollingGallery = false;
+             isPotentialSwipe = false;
+         });
+     } // end enableContentSwipe
+
+}); // End jQuery ready
+</script>
+</body>
+</html>

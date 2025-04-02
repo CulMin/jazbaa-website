@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jazbaa</title>
+    <link rel="icon" type="image/png" href="assets/Jazbaa final logo-5.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <!-- Updated FontAwesome version -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/homepage-style.css"> <!-- Link to your external CSS -->
+    <style>
+        /* Keep specific overrides here if absolutely necessary, but prefer external CSS */
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm"> <!-- Added shadow-sm utility -->
+            <div class="container-fluid"> <!-- Use container-fluid for full width -->
+                <a class="navbar-brand" href="#">
+                    <img src="assets/JAZBAA.svg" alt="Jazbaa Logo" style="height: 40px; width: auto;"> <!-- Set height, width auto -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0"> <!-- Added mb-2 mb-lg-0 for spacing -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About us</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="#events">Events Calendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#gallery">Gallery</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero d-flex justify-content-center align-items-center">
+       <img src="assets/Jazbaa final logo 2.svg" alt="Jazbaa Hero Logo" class="hero-logo">
+    </section>
+
+    <section class="glimpses-section py-5"> <!-- Added padding utility -->
+        <div class="container">
+            <h2 class="text-center mb-4">Glimpses</h2> <!-- Added margin bottom utility -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <!-- Use an inner div for aspect ratio control -->
+                        <div class="ratio ratio-16x9">
+                             <img src="assets/Red event.JPG" class="d-block w-100" alt="Event">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                         <div class="ratio ratio-16x9">
+                             <img src="assets/shaam-e-jazbaa.JPG" class="d-block w-100" alt="Shaam-e-jazbaa 2024">
+                         </div>
+                    </div>
+                    <div class="carousel-item">
+                         <div class="ratio ratio-16x9">
+                             <img src="assets/Onam.JPG" class="d-block w-100" alt="Onam 2024">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                         <div class="ratio ratio-16x9">
+                             <img src="assets/Freshers.jpg" class="d-block w-100" alt="Freshers 2024">
+                         </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="recent-events-section py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Recent Events and Reels</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <!-- REMOVED the .ratio div from here -->
+                    <div class="card video-event-card shadow-sm overflow-hidden"> <!-- Added new class 'video-event-card' -->
+                        <video id="eventVideo" controls preload="metadata" class="card-video"> <!-- Added new class 'card-video' -->
+                            <source src="assets/new reel.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="card-body text-center">
+                            <p class="card-text">Welcome back to campus after a much-needed mid-sem break!</p>
+                            <p class="card-text">Getting you with familiar faces that make Ashoka, Ashoka...</p>
+                        </div>
+                    </div>
+                    <!-- End of card -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer text-white py-4"> <!-- Use padding utilities -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8 text-center"> <!-- Control width and center -->
+                    <h1>Get In Touch</h1>
+                     <div class="email-container my-3"> <!-- Added vertical margin -->
+                        <p class="mb-1">Email:</p> <!-- Reduced margin bottom -->
+                        <a href="mailto:culturalministry@ashoka.edu.in" class="link-light">culturalministry@ashoka.edu.in</a>
+                    </div>
+
+                    <hr class="footer-line"> <!-- Use HR for semantic line -->
+
+                    <div class="social-icons my-3"> <!-- Added vertical margin -->
+                        <a href="https://www.instagram.com/jazbaa.ashoka/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/JazbaaAshoka" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/jazbaa-the-cultural-ministry/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://form.jotform.com/242996769922074" aria-label="Form"><i class="fa-solid fa-align-right"></i></a>
+                    </div>
+
+                     <hr class="footer-line"> <!-- Use HR for semantic line -->
+
+                </div>
+            </div>
+            <div class="footer-bottom text-center mt-3"> <!-- Added margin top -->
+                <p class="small">© 2024 Jazbaa. All rights reserved.</p> <!-- Use small utility, correct year -->
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+           // Intersection Observer for video play/pause (Keep this)
+           let video = document.getElementById("eventVideo");
+           if (video) { // Check if video element exists
+                let observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        // Check if element is visible and not paused by user interaction
+                        if (entry.isIntersecting) {
+                           // Optional: Only play if video hasn't been manually paused
+                           // if (video.paused) {
+                           //    video.play().catch(error => console.error("Video play failed:", error));
+                           // }
+                        } else {
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.5 }); // Trigger when 50% visible
+
+                observer.observe(video);
+           }
+
+           // REMOVED: Custom card size adjustment JS - Use CSS/Bootstrap utilities
+           // REMOVED: Custom carousel JS - Bootstrap handles this
+           // REMOVED: Custom aspect ratio detection JS - Use Bootstrap ratio helpers or CSS aspect-ratio
+           // REMOVED: toggleMenu JS - Bootstrap handles navbar toggle
+
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+
+  body {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: #efefef; 
+    margin: 0;
+    padding-top: 100px; 
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white; /* Ensure background so content is not visible behind it */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 1000;
+    
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.menu-toggle i {
+    color: #333; /* Adjust if necessary */
+}
+
+  
+  
+          nav {
+              display: flex;
+              align-items: center;
+              gap: 20px;
+          }
+  
+          nav a {
+              text-decoration: none;
+              color: black;
+              font-weight: bold;
+              font-size: 18px;
+              transition: color 0.3s ease;
+          }
+  
+          nav a:hover {
+              color: #365a97;
+          }
+          .glimpses {
+              text-align: center;
+              padding: 20px;
+          }
+  
+          @media (max-width: 768px) {
+            nav {
+                display: none; /* Hide by default */
+                flex-direction: column;
+                background-color: white;
+            }
+
+            .menu-toggle {
+              display: block;
+              font-size: 24px;
+              cursor: pointer;
+              margin-top: -20px;
+          
+          }
+        
+            nav.active {
+                display: flex; /* Show when toggled */
+            }
+        
+            nav a {
+                padding: 10px 0;
+                border-top: 1px solid #ccc;
+            }
+        }
+p {
+  color: #b3b3b3;
+  font-weight: 300; }
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; }
+  a, a:hover {
+    text-decoration: none !important; }
+
+.content {
+  padding: 7rem 0; }
+
+h2 {
+  font-size: 20px; }
+
+.form-control:active, .form-control:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+#calendar {
+  margin: 0 auto; }
+  #calendar .fc-view-container {
+    background-color: #fff;
+    -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2); }
+  #calendar .fc-toolbar.fc-header-toolbar .fc-center {
+    display: block; }
+
+    #calendar-container {
+      position: relative; 
+    
+      right: 5px;
+      left: 5px;
+      flex-grow: 1;
+      min-height: 80vh;
+      width: 100%;
+      padding-bottom: 20px; /* Prevents overlap */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+        
+    }
+
+.fc-event {
+  border: 1px solid #5070a7;
+  background-color: #5070a7;
+}
+
+.fc-button {
+  background-color: #2b3a52;
+  border: 1px solid #2b3a52;
+}
+a.fc-more {
+  color: black;
+}
+.fc-day-number{
+  color: black;
+}
+.fc-day:hover{
+  background: #d4e6fb;
+}
+.fc-button:hover {
+  border: 1px solid #5070a7;
+  background-color: #5070a7;
+}
+.fc-button-primary:disabled {
+  background-color: #0f60e0;
+  border: 1px solid #0f60e0;
+}
+.fc-unthemed td.fc-today {
+  background: #9cb0c7;
+}
+
+.fc-button-primary:not(:disabled).fc-button-active {
+  border: 1px solid #5070a7;
+  background-color: #5070a7;
+}
+
+.fc-header-toolbar {
+  /*
+    the calendar will be butting up against the edges,
+    but let's scoot in the header's buttons
+    */
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; /* Ensures main content (calendar) expands properly */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+
+footer {
+  position: relative; /* Ensure it's part of the document flow */
+  background: black;
+  color: #FFFDFD;
+  width: 100%;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  border-top: 1px solid #ccc;
+  padding: 20px 0;
+
+
+  
+} 
+.footer-content {
+  display: flex;
+  /*justify-content: space-between;
+  align-items: flex-start;*/
+  flex-wrap: wrap;
+  gap: 1rem;
+  
+}
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 1rem;
+}
+.line {
+  height: 2px;               
+  background-color: white;   
+  width: 40vw;
+  margin-top: 0.7rem;
+  justify-self: center;
+}
+.footer-section h1 {
+  display: inline-block;
+  justify-self: center;
+  font-weight: 100;
+  width: 270px;
+  height: 47px;
+  font-size: 40px;
+  white-space: nowrap;
+  line-height: 1.2;
+  margin-top: 0.2rem;
+}
+.footer-section p { /* EMAIL*/
+  margin:0px;
+  width: 61.32px;
+  font-size: 20px;
+  color: white;
+  font-weight: 300;
+  justify-self: center;
+  
+}
+.social-icons {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-self: center;
+  gap: 1rem;
+}
+
+.social-icons a {
+  font-size: 1.8rem;
+  color: white;
+  transition: background 0.3s, -webkit-mask-image 0.3s;
+}
+
+.social-icons a:hover {
+  color: #ababae;
+}
+
+
+@media (max-width: 768px) {
+.footer {
+      text-align: center;
+      padding: 20px;
+  }
+  .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  .footer-section h1  {
+      font-size: 20px; /* Reduce font size */
+  }
+  .footer-section p  {
+      font-size: 20px; /* Reduce font size */
+  }
+  .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap; /* Ensure icons wrap if needed */
+      margin-top: 10px;
+  }
+  .social-icons a {
+      font-size: 20px; /* Adjust icon size */
+  }
+  } 
+
+@media (max-width: 767.98px) {
+  .fc-toolbar {
+    display: block !important;
+    text-align: center; }
+    .fc-toolbar .fc-center {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 20px; } }

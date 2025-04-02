@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/team-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Consider adding Google Font link here instead of CSS @import for potentially better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>About Us</title>
+</head>
+
+<body>
+
+    <!-- navbar starts-->
+    <header>
+        <div class="logo-container">
+             <img src="./images/JAZBAA.svg" alt="logo" width="150">
+        </div>
+        <nav id="nav-menu">
+            <a href="#about">About us</a>
+            <a href="#shop">Shop</a>
+            <a href="#events">Events Calendar</a>
+            <a href="#gallery">Gallery</a>
+        </nav>
+        <div class="menu-toggle">
+             <button onclick="toggleMenu()" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    <!-- navbar ends-->
+
+    <main class="about-us-content">
+        <div class="about-us-header">
+            <h1>ABOUT US</h1>
+            <div class="note">
+                <h2> We are Cultural ministry...</h2>
+            </div>
+        </div>
+
+        <div class="team">
+            <h2> Our Team</h2>
+        </div>
+
+        <!-- meet the team starts -->
+        <div class="dropdown-section">
+            <!-- core starts -->
+            <div class="dropdown-container">
+                <button class="dropdown-button" onclick="toggleDropdown('CORE-profiles')">CORE <i class="fas fa-chevron-down"></i></button>
+                <div class="dropdown-content" id="CORE-profiles">
+                    <div class="head-container">
+                        <div class="profile-card">
+                            <img src="https://i.postimg.cc/fyk24kYq/Saransh.jpg" alt="Profile 1">
+                            <h3>Saransh Goel</h3>
+                            <p>Cultural Minister</p>
+                        </div>
+                        <div class="profile-card">
+                            <img src="https://i.postimg.cc/cJXBs0xp/IMG-2568-1.avif" alt="Profile 2">
+                            <h3>Anirudha Ahluwalia</h3>
+                            <p>Deputy Minister</p>
+                        </div>
+                        <div class="profile-card">
+                            <img src="https://i.postimg.cc/HWJRPP3Y/Dep-Min-Isha-Rajput.png" alt="Profile 3">
+                            <h3>Isha Rajput</h3>
+                            <p>Deputy Minister</p>
+                        </div>
+                        <div class="profile-card">
+                            <img src="https://i.postimg.cc/WbFWXFNh/Naysa-dep-min.jpg" alt="Profile 4">
+                            <h3>Naysa Khemlani</h3>
+                            <p>Deputy Minister</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- core ends-->
+
+            <!-- tech starts-->
+            <div class="dropdown-container">
+                <button class="dropdown-button" onclick="toggleDropdown('TECH-profiles')">TECH <i class="fas fa-chevron-down"></i></button>
+                <div class="dropdown-content" id="TECH-profiles">
+                    <div class="head-container">
+                        <div class="profile-card">
+                            <img src="./images/Ellipse 5.svg" alt="Placeholder profile picture"> <!-- Assuming placeholder -->
+                            <h3>Anurag Dey</h3>
+                            <p>Head of Department</p>
+                        </div>
+                        <div class="profile-card">
+                            <img src="https://i.postimg.cc/vTSKD5Qd/Tech-Sarthak-Rathi.jpg" alt="Profile 2">
+                            <h3>Sarthak Rathi</h3>
+                            <p>Head of Department</p>
+                        </div>
+                    </div>
+                    <div class="member-container">
+                        <div class="profile-card">
+                            <h3>Ayush Chauhan</h3>
+                            <p>Member</p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Dhivya Chellakumar</h3>
+                            <p>Member</p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Himaanshi Bansal</h3>
+                            <p>Member</p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Mohammad Rahman</h3>
+                            <p>Member</p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Rishi Nair</h3>
+                            <p>Member</p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Shristi Sharma</h3>
+                            <p>Member</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- tech ends-->
+
+            <!-- EVENTS starts-->
+            <div class="dropdown-container">
+                <button class="dropdown-button" onclick="toggleDropdown('EVENTS-profiles')">EVENTS <i class="fas fa-chevron-down"></i></button>
+                <div class="dropdown-content" id="EVENTS-profiles">
+                    <div class="head-container">
+                        <div class="profile-card">
+                            <img src="https://i.postimg.cc/8P64L24v/Isha-Events.png" alt="Profile 1">
+                            <h3>Isha Lokhre</h3>
+                            <p>Head of Department</p>
+                        </div>
+                        <div class="profile-card">
+                            <img src="https://i.postimg.cc/MHcDPN8h/Krishiv-Jain-Events.avif" alt="Profile 2">
+                            <h3>Krishiv Jain</h3>
+                            <p>Head of Department</p>
+                        </div>
+                        <div class="profile-card">
+                            <img src="https://i.postimg.cc/0jJYdSYv/Events-Saima.jpg" alt="Profile 3">
+                            <h3>Saima</h3>
+                            <p>Head of Department</p>
+                        </div>
+                        <div class="profile-card">
+                            <img src="https://i.postimg.cc/14hpWzBq/Events-Adviti.jpg" alt="Profile 4">
+                            <h3>Adviti Basu</h3>
+                            <p>Head of Department</p>
+                        </div>
+                    </div>
+                    <div class="member-container">
+                        <!-- Added all member profile cards here -->
+                         <div class="profile-card"><h3>Kartikeya Singh</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Soham Mishra</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Medha Shah</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Mansi Bhatia</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Viveka Ramakrishnan</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Amaya chopra</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Tanya Mittal</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Ananya Venkataraman</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Siddharth Anmol Bhatnagar</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Suhani Bhardwaj</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Tanay Maskara</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Theertha Panachoor</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Ojasvi Agarawal</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Aditya Gupta</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Vidhu Cheriyan</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Ishaani Nag</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Arash Syed</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Tanvi Chopra</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Sia Agarwal</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Harini Rathore</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Akshitha Ashok</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Mahi Prabhavalkar</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Dhruv Jain</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Aaryan Bahri</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Nikita Idnani </h3><p>Member</p></div>
+                    </div>
+                </div>
+            </div>
+            <!-- EVENTS ends-->
+
+            <!-- CLUBS AND SOCIETY starts-->
+            <div class="dropdown-container">
+                 <button class="dropdown-button" onclick="toggleDropdown('CS-profiles')">CLUBS AND SOCIETY <i class="fas fa-chevron-down"></i></button>
+                 <div class="dropdown-content" id="CS-profiles">
+                     <div class="head-container">
+                         <div class="profile-card">
+                             <img src="https://i.postimg.cc/hjDZr2vB/Seyuna-Cn-S.jpg" alt="Profile 1">
+                             <h3>Seyuna Guha</h3>
+                             <p>Head of Department</p>
+                         </div>
+                         <div class="profile-card">
+                             <img src="https://i.postimg.cc/s2kDGZg7/Cn-S-Manavi.jpg" alt="Profile 2">
+                             <h3>Manavi Jain</h3>
+                             <p>Head of Department</p>
+                         </div>
+                     </div>
+                     <div class="member-container">
+                          <!-- Added all member profile cards here -->
+                         <div class="profile-card"><h3>Ishthara Kiran</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Parth Agarwal</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Anusha Jalori</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Mohammed Ayaan</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Jia sharma</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Lavanya Bali</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Asewe Letro</h3><p>Member</p></div>
+                         <!-- Duplicate Asewe Letro removed, assuming typo -->
+                         <div class="profile-card"><h3>Jiya Vaya</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Abhijith Mohammed S N</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Akshita Agrawal</h3><p>Member</p></div>
+                     </div>
+                 </div>
+            </div>
+            <!-- CLUBS AND SOCIETY ends-->
+
+            <!-- CONTENT, MEDIA AND DESIGN start-->
+            <div class="dropdown-container">
+                 <button class="dropdown-button" onclick="toggleDropdown('CMD-profiles')">CONTENT, MEDIA AND DESIGN <i class="fas fa-chevron-down"></i></button>
+                 <div class="dropdown-content" id="CMD-profiles">
+                     <div class="head-container">
+                         <div class="profile-card">
+                             <img src="https://i.postimg.cc/cJXBs0xp/IMG-2568-1.avif" alt="Profile 1"> <!-- Placeholder/Incorrect image? -->
+                             <h3>Manya Dogra</h3>
+                             <p>Head of Department</p>
+                         </div>
+                         <div class="profile-card">
+                             <img src="https://i.postimg.cc/k5cfBWch/Marketing-Navya.avif" alt="Profile 2">
+                             <h3>Navya Mayekar</h3>
+                             <p>Head of Department</p>
+                         </div>
+                         <div class="profile-card">
+                             <img src="https://i.postimg.cc/DfYprdK9/ria-agrawal-cmd.avif" alt="Profile 3">
+                             <h3>Ria Agarwal</h3>
+                             <p>Head of Department</p>
+                         </div>
+                     </div>
+                     <div class="member-container">
+                          <!-- Added all member profile cards here -->
+                         <div class="profile-card"><h3>Alaana Agarwal</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Dharani Isser</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Aakanksha Thakkar</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Pavani Nanda</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Ahaan Daruka</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Uditi Saraogi</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Shrreya Venkatachalam</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Saairah Kapoor</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Abhijay Dwivedi</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Srishti Sarswat</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Vedika Navani</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Aarav Mookerjee</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Sagarika Gothi</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Diti Jain</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Siddhant Malik</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Aadya Sinha</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Ritisha Kapur</h3><p>Member</p></div>
+                     </div>
+                 </div>
+            </div>
+            <!-- CONTENT, MEDIA AND DESIGN  ends-->
+
+            <!-- INCLUSIVITY AND ACCESSIBILITY start-->
+            <div class="dropdown-container">
+                 <button class="dropdown-button" onclick="toggleDropdown('IA-profiles')">INCLUSIVITY AND ACCESSIBILITY <i class="fas fa-chevron-down"></i></button>
+                 <div class="dropdown-content" id="IA-profiles">
+                     <div class="head-container">
+                         <div class="profile-card">
+                             <img src="./images/Ellipse 5.svg" alt="Placeholder profile picture"> <!-- Placeholder -->
+                             <h3>Sia Sarin</h3>
+                             <p>Head of Department</p>
+                         </div>
+                         <div class="profile-card">
+                             <img src="https://i.postimg.cc/Hk12z6vh/Inclusivity-Raina-Gupta.jpg" alt="Profile 2">
+                             <h3>Raina Gupta</h3>
+                             <p>Head of Department</p>
+                         </div>
+                         <div class="profile-card">
+                             <img src="./images/Ellipse 5.svg" alt="Placeholder profile picture"> <!-- Placeholder -->
+                             <h3>Roshni Patra</h3>
+                             <p>Deputy Head</p>
+                         </div>
+                     </div>
+                     <div class="member-container">
+                          <!-- Added all member profile cards here -->
+                         <div class="profile-card"><h3>Irene Mary Philip</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Mansha Narang</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Khushee Dhadiwal</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Aira Singh</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Aanya Tulsyan</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Vishvaney Agarwal</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Gia Doshi</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Charvi Khullar</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Raina Baldia</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Shreya Seshadri</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Deviyaansh Sharma</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Chitrangada Tiwari</h3><p>Member</p></div>
+                     </div>
+                 </div>
+            </div>
+            <!-- INCLUSIVITY AND ACCESSIBILITY  ends-->
+
+            <!-- INTERCOLLEGIATE start-->
+            <div class="dropdown-container">
+                 <button class="dropdown-button" onclick="toggleDropdown('CLG-profiles')">INTERCOLLEGIATE <i class="fas fa-chevron-down"></i></button>
+                 <div class="dropdown-content" id="CLG-profiles">
+                     <div class="head-container">
+                         <div class="profile-card">
+                             <img src="./images/Ellipse 5.svg" alt="Placeholder profile picture"> <!-- Placeholder -->
+                             <h3>Vibha Rawat</h3>
+                             <p>Head of Department</p>
+                         </div>
+                         <div class="profile-card">
+                             <img src="https://i.postimg.cc/DZQFWjD3/Guntaas-Intercol.jpg" alt="Profile 2">
+                             <h3>Guntaas Kaur</h3>
+                             <p>Head of Department</p>
+                         </div>
+                     </div>
+                     <div class="member-container">
+                          <!-- Added all member profile cards here -->
+                         <div class="profile-card"><h3>Rishika Agarwal</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Mehak Chilukuri</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Tanjal Shah</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Anushka Goyal</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Avisha Chaudhry </h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Sreenandana Nair</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Namya Surana </h3><p>Member</p></div>
+                     </div>
+                 </div>
+            </div>
+            <!-- INTERCOLLEGIATE  ends-->
+
+            <!-- FINANCE start-->
+            <div class="dropdown-container">
+                 <button class="dropdown-button" onclick="toggleDropdown('FIN-profiles')">FINANCE <i class="fas fa-chevron-down"></i></button>
+                 <div class="dropdown-content" id="FIN-profiles">
+                     <div class="head-container">
+                         <div class="profile-card">
+                             <img src="https://i.postimg.cc/9XpCCkZG/Finance-Myra.avif" alt="Profile 1">
+                             <h3>Myra Agarwal</h3>
+                             <p>Head of Department</p>
+                         </div>
+                         <div class="profile-card">
+                             <img src="https://i.postimg.cc/hjY8ds7M/Finance-Aarushi.jpg" alt="Profile 2">
+                             <h3>Aarushi Gupta</h3>
+                             <p>Head of Department</p>
+                         </div>
+                         <div class="profile-card">
+                             <img src="https://i.postimg.cc/B6bcbktX/Finance-Avinash.jpg" alt="Profile 3">
+                             <h3>Avinash Rai</h3>
+                             <p>Deputy Head</p>
+                         </div>
+                     </div>
+                     <div class="member-container">
+                         <!-- Added all member profile cards here -->
+                         <div class="profile-card"><h3>Mishka Singh</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Ahaan Dhawan</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Kannv Dhandhania</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Jiya Gupta</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Darsh Mathur</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Avani Jindal</h3><p>Member</p></div>
+                         <div class="profile-card"><h3>Vritti Kohli</h3><p>Member</p></div>
+                     </div>
+                 </div>
+             </div>
+            <!-- FINANCE  ends-->
+        </div>
+        <!-- meet the team ends -->
+
+    </main>
+
+
+    <!-- CONTACT SEC starts-->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h1>Get In Touch</h1>
+                    <p>Email</p>
+                    <p><a href="mailto:culturalministry@ashoka.edu.in">culturalministry@ashoka.edu.in</a></p>
+                    <div class="line"></div>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/jazbaa.ashoka/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/JazbaaAshoka" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/jazbaa-the-cultural-ministry/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://form.jotform.com/242996769922074" aria-label="Form"><i class="fa-solid fa-align-right"></i></a>
+                        <!-- Consider a more descriptive icon/label for the form link -->
+                    </div>
+                    <div class="line"></div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 Jazbaa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- CONTACT SEC ends-->
+
+    <!-- script file js -->
+    <script src="./main.js"></script>
+</body>
+
+</html>

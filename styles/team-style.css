@@ -1,0 +1,344 @@
+/* Basic Reset and Font */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff; /* Default background */
+}
+
+/* Header and Navigation */
+header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between; /* Pushes logo left, nav/toggle right */
+    align-items: center;
+    padding: 15px 5%; /* Use percentage for padding */
+    border-bottom: 1px solid #ccc;
+}
+
+.logo-container img {
+    display: block; /* Prevents extra space below image */
+    /* width: 150px; /* Width set in HTML */
+    height: auto; /* Maintain aspect ratio */
+}
+
+nav {
+    display: flex; /* Nav items in a row on desktop */
+    align-items: center;
+}
+
+nav a {
+    margin: 0 15px; /* Spacing between links */
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 16px; /* Slightly smaller */
+    letter-spacing: 1px; /* Less spacing */
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #365a97;
+}
+
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+}
+
+.menu-toggle button {
+    background: none;
+    border: none;
+    font-size: 1.5rem; /* Adjust size as needed */
+    color: #333;
+    padding: 5px;
+}
+
+/* Main Content Area */
+.about-us-content {
+    padding: 40px 5%; /* Consistent padding */
+    max-width: 1200px; /* Limit content width on large screens */
+    margin: 0 auto; /* Center content area */
+}
+
+.about-us-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.note h2 { /* Changed to h2 */
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 300; /* Lighter weight */
+    text-align: center;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.team h2 { /* Changed to h2 */
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 30px;
+}
+
+/* Dropdown Section */
+.dropdown-section {
+    margin-top: 40px;
+}
+
+.dropdown-container {
+    margin-bottom: 30px; /* Space between dropdowns */
+    border-bottom: 1px solid #ccc; /* Lighter border */
+    padding-bottom: 20px;
+}
+
+.dropdown-container:last-child {
+    border-bottom: none; /* Remove border from last item */
+    margin-bottom: 0;
+}
+
+.dropdown-button {
+    background-color: transparent;
+    color: black;
+    font-weight: 400; /* Adjusted weight */
+    padding: 15px 0; /* Padding top/bottom, no horizontal */
+    border: none;
+    cursor: pointer; /* Standard cursor */
+    font-size: clamp(1.5rem, 4vw, 2.2rem); /* Responsive size */
+    width: 100%; /* Make button full width */
+    text-align: left; /* Align text left */
+    display: flex; /* Align icon */
+    justify-content: space-between; /* Icon to the right */
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+.dropdown-button i {
+    font-size: 0.8em; /* Smaller icon */
+    transition: transform 0.3s ease;
+}
+.dropdown-button.active i { /* Style when open */
+   transform: rotate(180deg);
+}
+
+.dropdown-button:hover {
+    background-color: rgb(244, 244, 244);
+}
+
+.dropdown-content {
+    display: none; /* Hidden by default */
+    margin-top: 20px; /* Space below button */
+    padding: 10px 0; /* Padding top/bottom */
+    animation: fadeIn 0.5s ease; /* Simple fade-in */
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* Profile Card Layout */
+.head-container,
+.member-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: flex-start; /* Align items to the start */
+    justify-content: center; /* Center items within the container */
+    gap: 30px; /* Consistent gap */
+    margin-top: 20px;
+}
+
+/* Profile Cards Styling */
+.profile-card {
+    background-color: transparent;
+    /* width: 200px; /* Fixed width can work with wrapping */
+    flex: 0 1 200px; /* Flex properties: grow 0, shrink 1, basis 200px */
+    text-align: center; /* Center text */
+    margin-bottom: 20px; /* Add some bottom margin for spacing when wrapped */
+}
+
+.profile-card img {
+    width: 150px; /* Slightly smaller image */
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensure image covers space */
+    margin-bottom: 15px; /* Space below image */
+    border: 1px solid #eee; /* Optional subtle border */
+}
+
+.profile-card h3 {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.profile-card p {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: #555; /* Softer color */
+    font-weight: 400; /* Normal weight */
+}
+
+/* Footer Styling */
+.footer {
+    background: #170c02;
+    color: #FFFDFD;
+    padding: 40px 5%;
+    text-align: center;
+    margin-top: 50px; /* Space above footer */
+}
+
+.container { /* Renamed from .container for clarity if needed elsewhere */
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-section h1 {
+    font-weight: 300; /* Lighter */
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 15px;
+    /* Removed fixed width/height */
+}
+
+.footer-section p { /* EMAIL Label */
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: #ffffff;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+.footer-section p a { /* Email Link */
+    color: #eee; /* Slightly different color for link */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 400;
+}
+.footer-section p a:hover {
+    color: #fff;
+}
+
+.line {
+    height: 1px; /* Thinner line */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent */
+    width: 80%; /* Relative width */
+    max-width: 400px; /* Max width */
+    margin: 15px auto; /* Center line */
+}
+
+.social-icons {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Space between icons */
+}
+
+.social-icons a {
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
+    color: white;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ababae;
+    transform: scale(1.1); /* Slight scale on hover */
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    color: #aaa;
+}
+
+
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 5%;
+        position: relative; /* Needed for absolute positioning of nav */
+    }
+
+    nav {
+        display: none; /* Hide nav by default */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Position below header */
+        left: 0;
+        width: 100%;
+        background: white;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        padding: 10px 0; /* Padding inside mobile nav */
+        z-index: 999; /* Ensure it's above content */
+    }
+
+    nav.active {
+        display: flex; /* Show nav when active */
+    }
+
+    nav a {
+        margin: 10px 0; /* Vertical spacing for mobile links */
+        padding: 10px 20px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger */
+    }
+
+    /* Main content padding adjusted slightly if needed */
+     .about-us-content {
+        padding: 30px 5%;
+    }
+
+    /* Profile Card Layout for Mobile - 2 columns */
+    .head-container,
+    .member-container {
+        gap: 15px; /* Smaller gap on mobile */
+        justify-content: space-around; /* Distribute space */
+    }
+
+    .profile-card {
+       flex: 1 1 calc(50% - 20px); /* Aim for 2 columns, accounting for gap */
+       max-width: calc(50% - 20px); /* Max width per card */
+       margin-bottom: 15px; /* Ensure spacing below rows */
+    }
+
+     .profile-card img {
+        width: 100px; /* Adjust image size for mobile */
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    /* Adjust footer spacing/sizes */
+    .footer {
+        padding: 30px 5%;
+    }
+    .social-icons {
+        gap: 20px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    /* Optional: Further adjustments for very small screens */
+    .profile-card {
+       flex: 1 1 100%; /* Stack cards vertically */
+       max-width: 80%; /* Limit width when stacked */
+       margin-left: auto;
+       margin-right: auto;
+    }
+    .profile-card img {
+        width: 120px;
+        height: 120px;
+    }
+}
